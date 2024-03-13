@@ -1,0 +1,13 @@
+.ruff_cache
+.mypy_cache
+.vscode
+*.egg-info
+__pycache__
+build
+dist
+*venv
+# *.toml
+# .vscode
+# .flake8
+# .gitignore
+# .pylintrc

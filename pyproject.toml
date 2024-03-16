@@ -15,32 +15,19 @@ requires-python = ">=3.8"
 keywords = ["one", "two"]
 license = { text = "MIT" }
 classifiers = ["Programming Language :: Python :: 3"]
-dependencies = ["numpy", 'importlib-metadata; python_version<"3.10"']
-# dynamic = ["version"]
+dependencies = ["fastapi"]
 version = '0.0.0'
+
+[project.optional-dependencies]
+dev = ['ruff', 'mypy', 'black']
+colors = ['rich']
+graphs = ['pipdeptree', 'graphviz']
+all = ['packaging_demo[dev, colors, graphs]']
 
 [tool.black]
 line-length = 99
 exclude = "venv"
 
-[tool.flake8]
-docstring-convention = 'all'
-ignore = ['D107', 'D212', 'E501', 'E503', 'W605', 'D203']
-exclude = ['venv']
-max-line-length = 99
-
-#radon
-radon-max-cc = 10
-
-[tool.isort]
-profile = 'black'
-multi_line_output = 'VERTICAL_HANGING_INDENT'
-force_grid_wrap = 2
-line_length = 99
-
-
-[tool.pylint.'messages control']
-disable = ['line-too-long']
 [tool.ruff]
 # 1. Enable flake8-bugbear (`B`) rules, in addition to the defaults.
 lint.select = ["E4", "E7", "E9", "F", "B", "ERA"]

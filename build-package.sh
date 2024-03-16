@@ -12,9 +12,9 @@ find . \
   -not -path "./venv/*" \
   -exec rm -r {} +
 
-# rebuild and uznzip the wheel
+rebuild and uznzip the wheel
 python -m build --sdist --wheel ./
-pip install .
+pip install '.[all]'
 
 # Use those if you want to see a preview of package in dist.
 # cd dist

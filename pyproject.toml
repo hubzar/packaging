@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 "packaging_demo.my_folder" = ["*.json"]
 
 [project]
-name = "packaging-demo"
+name = "packaging-demo-hubzar"
 authors = [{ name = "HubZar", email = "your_email@example.com" }]
 description = "My package description"
 readme = "README.md"
@@ -15,14 +15,17 @@ requires-python = ">=3.8"
 keywords = ["one", "two"]
 license = { text = "MIT" }
 classifiers = ["Programming Language :: Python :: 3"]
-dependencies = ["fastapi"]
-version = '0.0.0'
+dependencies = ["numpy", 'importlib-metadata; python_version<"3.8"']
+version = '0.0.1'
 
 [project.optional-dependencies]
-dev = ['ruff', 'mypy', 'black']
+test = ['pytest', 'pytest-cov']
+release = ['build', 'twine']
+static-code-qa = ['pre-commit']
+linters = ['ruff', 'mypy', 'black']
 colors = ['rich']
 graphs = ['pipdeptree', 'graphviz']
-all = ['packaging_demo[dev, colors, graphs]']
+dev = ['packaging-demo[test, release, static-code-qa]']
 
 [tool.black]
 line-length = 99

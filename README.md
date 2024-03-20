@@ -6,3 +6,5 @@ Packaging terms:
 - distribution package
 
 Getting familiar with CI/CD
+
+Adapting to linters

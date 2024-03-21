@@ -1,3 +1,5 @@
+"""This is a module doctstring"""
+
 try:
     from rich import print
 except ImportError:

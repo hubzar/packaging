@@ -11,3 +11,4 @@ print(MY_ARRAY)
 
 print(CONSTANT)
 print(CONSTANT2)
+print(error)

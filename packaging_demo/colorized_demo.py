@@ -1,7 +1,7 @@
 """This is a module doctstring"""
 
 try:
-    from rich import print
+    from rich import print  # pylint: disable=[W0622]
 except ImportError:
     ...
 

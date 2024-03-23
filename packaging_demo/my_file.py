@@ -13,6 +13,6 @@ print(CONSTANT)
 print(CONSTANT2)
 
 
-def add_number(a: int, b: int) -> int:
+def add_number(a: int, b: int, c: int) -> int:
     """Return the sum of two numbers"""
-    return a + b
+    return sum([a, b, c])

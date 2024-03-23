@@ -16,7 +16,7 @@ keywords = ["one", "two"]
 license = { text = "MIT" }
 classifiers = ["Programming Language :: Python :: 3"]
 dependencies = ["numpy", 'importlib-metadata; python_version<"3.8"']
-version = '0.0.1'
+version = '0.0.2'
 
 [project.optional-dependencies]
 test = ['pytest', 'pytest-cov']
@@ -25,7 +25,10 @@ static-code-qa = ['pre-commit']
 linters = ['ruff', 'mypy', 'black']
 colors = ['rich']
 graphs = ['pipdeptree', 'graphviz']
-dev = ['packaging-demo[test, release, static-code-qa]']
+dev = ['packaging-demo-hubzar[test, release, static-code-qa]']
+all = [
+    'packaging-demo-hubzar[linters, colors, graphs, test, release, static-code-qa]',
+]
 
 [tool.black]
 line-length = 99

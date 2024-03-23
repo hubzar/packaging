@@ -23,9 +23,15 @@ function build {
 }
 
 function release:test {
+    lint
     clean
     build
     publish:test
+}
+
+function release:prod {
+    release:test
+    publish:prod
 }
 
 function publish:test {
@@ -34,6 +40,14 @@ function publish:test {
         --repository testpypi \
         --username=__token__ \
         --password="$TEST_PYPI_TOKEN"
+}
+
+function publish:prod {
+    load-dotenv
+    twine upload dist/* \
+        --repository pypi \
+        --username=__token__ \
+        --password="$PYPI_TOKEN"
 }
 
 function clean {

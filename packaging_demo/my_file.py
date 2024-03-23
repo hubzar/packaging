@@ -11,3 +11,8 @@ print(MY_ARRAY)
 
 print(CONSTANT)
 print(CONSTANT2)
+
+
+def add_number(a: int, b: int) -> int:
+    """Return the sum of two numbers"""
+    return a + b

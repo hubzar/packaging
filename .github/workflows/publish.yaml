@@ -4,7 +4,8 @@ on:
   pull_request:
     types: [opened, synchronize]
   push:
-    branches: -main
+    branches:
+      - main
 jobs:
   build-test-and-publish:
     runs-on: ubuntu-latest

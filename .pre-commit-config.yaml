@@ -38,7 +38,7 @@ repos:
       - id: forbid-new-submodules
       # Prevent commiting directly to trunk (since Bitbucket wants us to pay for this feature)
       - id: no-commit-to-branch
-        args: ["--branch=trunk"]
+        args: ["--branch=main"]
       # Detect *your* aws credentials from your ~/.aws/credentials file
       - id: detect-private-key
 

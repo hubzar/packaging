@@ -14,5 +14,5 @@ print(CONSTANT2)
 
 
 def add_number(a: int, b: int, c: int) -> int:
-    """Return the sum of two numbers"""
+    """Return the sum of three numbers"""
     return sum([a, b, c])

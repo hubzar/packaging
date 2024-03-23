@@ -18,4 +18,4 @@ jobs:
         pip install pre-commit
     - name: Analysing the code with pre-commit
       run: |
-        SKIP=no-commit-to-brunch pre-commit run --all-files
+        SKIP=no-commit-to-branch pre-commit run --all-files

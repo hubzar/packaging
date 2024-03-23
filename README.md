@@ -5,6 +5,8 @@ Packaging terms:
 - sub-package
 - distribution package
 
+Adapting to linters
+
 Getting familiar with CI/CD
 
-Adapting to linters
+Practicing GitHub Actions

@@ -47,7 +47,7 @@ function publish:prod {
     twine upload dist/* \
         --repository pypi \
         --username=__token__ \
-        --password="$PYPI_TOKEN"
+        --password="$PROD_PYPI_TOKEN"
 }
 
 function clean {

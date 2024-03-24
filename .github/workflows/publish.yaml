@@ -19,9 +19,9 @@ jobs:
         run: |
           /bin/bash run.sh install 
           /bin/bash run.sh build
-          .env:
-            TEST_PYPI_TOKEN=${{ secrets.TEST_PYPI_TOKEN }}
           /bin/bash run.sh publish:test
+        env: 
+          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
       # - name: Install dependencies
       #   run: |
       #     python -m pip install --upgrade pip

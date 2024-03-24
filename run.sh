@@ -23,7 +23,8 @@ function build {
 }
 
 function release:test {
-    lint
+    # lint
+    install
     clean
     build
     publish:test

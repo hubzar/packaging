@@ -11,6 +11,7 @@ function load-dotenv {
 }
 
 function install {
+    python -m pip install --upgrade pip
     python -m pip install --editable "$THIS_DIR/[release]"
 }
 
@@ -23,8 +24,7 @@ function build {
 }
 
 function release:test {
-    # lint
-    install
+    lint
     clean
     build
     publish:test
@@ -36,7 +36,7 @@ function release:prod {
 }
 
 function publish:test {
-    load-dotenv
+    # load-dotenv
     twine upload dist/* \
         --repository testpypi \
         --username=__token__ \

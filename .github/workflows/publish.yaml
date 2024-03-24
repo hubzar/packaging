@@ -21,6 +21,7 @@ jobs:
           pip install numpy
           pip install pre-commit
           pip install build
+          pip install twine
       # - name: Analysing the code with pre-commit
       #   run: |
       #     SKIP=no-commit-to-branch pre-commit run --all-files

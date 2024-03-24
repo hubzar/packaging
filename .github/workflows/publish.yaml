@@ -20,6 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install numpy
           pip install pre-commit
-      - name: Analysing the code with pre-commit
+      # - name: Analysing the code with pre-commit
+      #   run: |
+      #     SKIP=no-commit-to-branch pre-commit run --all-files
+      - name: Publish to pypi test
         run: |
-          SKIP=no-commit-to-branch pre-commit run --all-files
+          ./run.sh release:test

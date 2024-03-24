@@ -1,4 +1,4 @@
-"""excercise file"""
+"""exercise file"""
 
 import numpy as np
 

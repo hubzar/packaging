@@ -1,4 +1,4 @@
-"""excersise file"""
+"""exercise file"""
 
 import json
 from pathlib import Path

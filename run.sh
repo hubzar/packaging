@@ -4,7 +4,8 @@ set -e
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
-function load-dotenv {
+function try-load-dotenv {
+    [ -f "$THIS_DIR/.env" ] || (echo ".env file not found" && return 1)
     while read -r line; do
         export "$line"
     done < <(grep -v '^#' "$THIS_DIR/.env" | grep -v '^$')
@@ -36,7 +37,7 @@ function release:prod {
 }
 
 function publish:test {
-    # load-dotenv
+    try-load-dotenv || true
     twine upload dist/* \
         --repository testpypi \
         --username=__token__ \
@@ -44,7 +45,7 @@ function publish:test {
 }
 
 function publish:prod {
-    load-dotenv
+    try-load-dotenv || true
     twine upload dist/* \
         --repository pypi \
         --username=__token__ \

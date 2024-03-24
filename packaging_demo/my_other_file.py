@@ -1,3 +1,3 @@
-"""excercise file"""
+"""exercise file"""
 
 CONSTANT = "hi there"

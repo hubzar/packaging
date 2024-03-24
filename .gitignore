@@ -10,8 +10,3 @@ build
 dist
 *venv
 venv
-# *.toml
-# .vscode
-# .flake8
-# .gitignore
-# .pylintrc

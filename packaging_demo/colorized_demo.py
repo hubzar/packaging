@@ -1,4 +1,4 @@
-"""This is a module doctstring"""
+"""This is a module docstring"""
 
 try:
     from rich import print  # pylint: disable=[W0622]

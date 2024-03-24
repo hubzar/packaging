@@ -1,4 +1,4 @@
-"""excersie file"""
+"""exercise file"""
 
 from packaging_demo.my_other_file import CONSTANT as CONSTANT2
 

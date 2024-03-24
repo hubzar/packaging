@@ -23,11 +23,11 @@ jobs:
       - name: Build Python package
         run: |
           /bin/bash -x run.sh build
-      - name: Publish to Test PyPi
-        run: |
-          /bin/bash -x run.sh publish:test
-        env:
-          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+      # - name: Publish to Test PyPi
+      #   run: |
+      #     /bin/bash -x run.sh publish:test
+      #   env:
+      #     TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
 
       # - name: Analysing the code with pre-commit
       #   run: |

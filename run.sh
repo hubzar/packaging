@@ -11,7 +11,7 @@ function load-dotenv {
 }
 
 function install {
-    python -m pip install --editable "$THIS_DIR/[all]"
+    python -m pip install --editable "$THIS_DIR/[release]"
 }
 
 function lint {

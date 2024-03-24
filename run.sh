@@ -1,11 +1,15 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 function try-load-dotenv {
-    [ -f "$THIS_DIR/.env" ] || (echo ".env file not found" && return 1)
+    if [ ! -f "$THIS_DIR/.env" ]; then
+        echo ".env file not found"
+        return 1
+    fi
+
     while read -r line; do
         export "$line"
     done < <(grep -v '^#' "$THIS_DIR/.env" | grep -v '^$')

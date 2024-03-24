@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -e
 
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
@@ -21,6 +21,7 @@ function install {
 }
 
 function lint {
+    clean
     pre-commit run --all-files
 }
 

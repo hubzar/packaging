@@ -17,7 +17,7 @@ function try-load-dotenv {
 
 function install {
     python -m pip install --upgrade pip
-    python -m pip install --editable "$THIS_DIR/[release]"
+    python -m pip install --editable "$THIS_DIR/[dev]"
 }
 
 function lint {

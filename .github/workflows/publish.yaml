@@ -28,9 +28,9 @@ jobs:
         with:
           python-version: 3.8
 
-      - name: Tag with release version
-        run: |
-          git tag some-tag  # 0.0.0
+      # - name: Tag with release version
+      #   run: |
+      #     git tag some-tag  # 0.0.0
 
       - name: Install Python dependencies
         run: |
@@ -58,10 +58,10 @@ jobs:
         env:
           PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
 
-      - name: Push tags
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git push origin --tags
+      # - name: Push tags
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   run: |
+      #     git push origin --tags
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest

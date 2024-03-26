@@ -9,13 +9,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-test-and-publish:
+
+  get-cached-pip:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.1.1
-        with:
-          fetch-depth: 0
-
       - uses: actions/cache@v4.0.2
         with:
           path: ~/.cache/pip
@@ -23,22 +20,44 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pip-
 
+  check-version-txt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+      - name: Tag with release version
+        run: |
+          git tag $(cat version.txt)
+
+
+  lint-format-and-static-code-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v5.0.0
+        with:
+          python-version: 3.8
+      - name: install pre-commit
+        run: |
+          pip install pre-commit
+      - name: Lint, Format and other static code quality checks
+        run: |
+          /bin/bash -x run.sh lint:ci
+        
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
       - name: Set up Python 3.8
         uses: actions/setup-python@v5.0.0
         with:
           python-version: 3.8
 
-      # - name: Tag with release version
-      #   run: |
-      #     git tag some-tag  # 0.0.0
-
       - name: Install Python dependencies
         run: |
           /bin/bash -x run.sh install
-
-      - name: Lint, Format and other static code quality checks
-        run: |
-          /bin/bash -x run.sh lint:ci
 
       - name: Build Python package
         run: |
@@ -58,10 +77,10 @@ jobs:
         env:
           PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
 
-      # - name: Push tags
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      #   run: |
-      #     git push origin --tags
+      - name: Push tags
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git push origin --tags
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest

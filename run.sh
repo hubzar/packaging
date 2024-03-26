@@ -5,7 +5,11 @@ set -e
 THIS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 
 function try-load-dotenv {
-    [ -f "$THIS_DIR/.env" ] || (echo ".env file not found" && return 1)
+    if [ ! -f "$THIS_DIR/.env" ]; then
+        echo ".env file not found"
+        return 1
+    fi
+
     while read -r line; do
         export "$line"
     done < <(grep -v '^#' "$THIS_DIR/.env" | grep -v '^$')
@@ -13,14 +17,19 @@ function try-load-dotenv {
 
 function install {
     python -m pip install --upgrade pip
-    python -m pip install --editable "$THIS_DIR/[release]"
+    python -m pip install --editable "$THIS_DIR/[dev]"
 }
 
 function lint {
     pre-commit run --all-files
 }
 
+function lint:ci {
+    SKIP=no-commit-to-branch pre-commit run --all-files
+}
+
 function build {
+    clean
     python -m build --sdist --wheel "$THIS_DIR/"
 }
 

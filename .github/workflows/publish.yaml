@@ -13,28 +13,55 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - uses: actions/cache@v4.0.2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
       - name: Set up Python 3.8
         uses: actions/setup-python@v5.0.0
         with:
           python-version: 3.8
+
+      - name: Tag with release version
+        run: |
+          git tag some-tag  # 0.0.0
+
       - name: Install Python dependencies
         run: |
           /bin/bash -x run.sh install
-      - name: Linting
+
+      - name: Lint, Format and other static code quality checks
         run: |
-          /bin/bash -x run.sh lint
+          /bin/bash -x run.sh lint:ci
+
       - name: Build Python package
         run: |
           /bin/bash -x run.sh build
+
       # - name: Publish to Test PyPi
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       #   run: |
       #     /bin/bash -x run.sh publish:test
       #   env:
       #     TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
 
-      # - name: Analysing the code with pre-commit
+      # - name: Publish to Prod PyPi
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       #   run: |
-      #     SKIP=no-commit-to-branch pre-commit run --all-files
+      #     /bin/bash -x run.sh publish:prod
+      #   env:
+      #     PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
+
+      # - name: Push tags
+      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      #   run: |
+      #     git push origin --tags
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest

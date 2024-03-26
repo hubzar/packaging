@@ -44,24 +44,24 @@ jobs:
         run: |
           /bin/bash -x run.sh build
 
-      # - name: Publish to Test PyPi
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      #   run: |
-      #     /bin/bash -x run.sh publish:test
-      #   env:
-      #     TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
+      - name: Publish to Test PyPi
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          /bin/bash -x run.sh publish:test
+        env:
+          TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
 
-      # - name: Publish to Prod PyPi
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      #   run: |
-      #     /bin/bash -x run.sh publish:prod
-      #   env:
-      #     PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
+      - name: Publish to Prod PyPi
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          /bin/bash -x run.sh publish:prod
+        env:
+          PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
 
-      # - name: Push tags
-      #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      #   run: |
-      #     git push origin --tags
+      - name: Push tags
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git push origin --tags
 
   dump_contexts_to_log:
     runs-on: ubuntu-latest

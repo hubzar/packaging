@@ -35,6 +35,9 @@ jobs:
           /bin/bash -x run.sh lint:ci
 
   build-and-publish:
+    needs:
+      - lint-format-and-static-code-checks
+      - check-version-txt
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4.1.1
